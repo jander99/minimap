@@ -1,0 +1,80 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 1
+      author: Jeff Anderson
+      changes:
+        - createTable:
+            tableName: sku_mappings
+            columns:
+              - column:
+                  name: sku
+                  type: int
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gas_code
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: Jeff Anderson
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  name: sku
+                  type: NUMERIC
+              - column:
+                  name: gas_code
+                  type: NUMERIC
+            encoding: UTF-8
+            file: db/changelog/skumappings.csv
+            tableName: sku_mappings
+
+  - changeSet:
+      id: 3
+      author: Jeff Anderson
+      changes:
+        - createTable:
+            tableName: tool_rental_mappings
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subcategory
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gas_code
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: Jeff Anderson
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  name: category
+                  type: STRING
+            encoding: UTF-8
+            file: db/changelog/toolrentalmappings.csv
+            tableName: tool_rental_mappings
